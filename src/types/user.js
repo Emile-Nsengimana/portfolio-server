@@ -1,4 +1,3 @@
-
 import { GraphQLObjectType, GraphQLString } from "graphql";
 
 export const USER = new GraphQLObjectType({
@@ -13,5 +12,12 @@ export const USER = new GraphQLObjectType({
     country: { type: GraphQLString },
     city: { type: GraphQLString },
     street: { type: GraphQLString }
+  })
+});
+
+export const USERUPDATED = new GraphQLObjectType({
+  name: "USERINFO",
+  fields: () => ({
+    message: { type: GraphQLString }
   })
 });

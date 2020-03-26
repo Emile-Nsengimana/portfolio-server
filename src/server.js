@@ -1,5 +1,5 @@
 import express from "express";
-var graphqlHTTP = require("express-graphql");
+import graphqlHTTP from "express-graphql";
 import { schema } from "./schema/schema";
 
 const app = express();
@@ -7,12 +7,9 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
-    rootValue: root,
+    rootValue: global,
     graphiql: true
   })
 );
-app.use("/admin", (req, res) => {
-  return res.send("Hello Admin");
-});
 
 app.listen(3000, () => console.log("Server started ..."));

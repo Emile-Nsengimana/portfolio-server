@@ -1,12 +1,12 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql";
-import { USER } from "../types/user";
+import { USER, USERUPDATED } from "../types/user";
 import UserResolver from "../resolvers/user";
 
 export const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: () => ({
-    CreateUser: {
-      type: USER,
+    UpdateUser: {
+      type: USERUPDATED,
       args: {
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
@@ -18,8 +18,8 @@ export const Mutation = new GraphQLObjectType({
         city: { type: GraphQLString },
         street: { type: GraphQLString }
       },
-      resolve(args) {
-        return UserResolver.login(args);
+      resolve(parent, args) {
+        return UserResolver.editUserInfo(args);
       }
     }
   })

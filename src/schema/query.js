@@ -8,10 +8,21 @@ export const RootQuery = new GraphQLObjectType({
     Login: {
       type: USER,
       args: {
-        email: { type: GraphQLString }
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
       },
       resolve(parent, args) {
         return UserResolver.login(args);
+      }
+    },
+
+    GetUser: {
+      type: USER,
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        return UserResolver.getUserInfo(args);
       }
     }
   })

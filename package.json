@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run require(@babel/register) src/server",
-    "build": "babel src --out-dir build",
-    "dev": "nodemon --require @babel/register src/server"
+    "start": "node build/server",
+    "build": "npm run clean && babel src --out-dir build",
+    "clean": "rm -rf build/",
+    "dev": "nodemon --require @babel/register --require @babel/polyfill src/server"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,12 @@
   },
   "homepage": "https://github.com/Emile-Nsengimana/portfolio-server#readme",
   "dependencies": {
-    "apollo-server-express": "^2.11.0",
+    "bcrypt": "^4.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
+    "moment": "^2.24.0",
     "nodemon": "^2.0.2",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
@@ -33,10 +36,10 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/node": "^7.8.7",
     "@babel/polyfill": "^7.8.7",
-    "@babel/core": "^7.8.7",
-    "@babel/register": "^7.8.6",
-    "@babel/preset-env": "^7.8.7"
+    "@babel/preset-env": "^7.8.7",
+    "@babel/register": "^7.8.6"
   }
 }
