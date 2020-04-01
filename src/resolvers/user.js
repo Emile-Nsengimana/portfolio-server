@@ -38,33 +38,29 @@ class UserResolver {
 
   static async editUserInfo(args) {
     const user = await UserModal.findOne({
-      where: { email: args.email }
+      where: { id: args.userId }
     });
 
     if (!user) {
       throw new GraphQLError("user not found");
     }
 
-    const newUserInfo = await UserModal.update(
-      {
-        firstName: args.firstName || user.firstName,
-        lastName: args.lastName || user.lastName,
-        email: args.email || user.email,
-        profile: args.profile || user.profile,
-        phone: args.phone || user.phone,
-        bio: args.bio || user.bio,
-        country: args.country || user.country,
-        city: args.city || user.city,
-        street: args.city || user.street
-      },
-      { where: { email: args.email } }
-    );
+    const updatedUser = await user.update({
+      firstName: args.firstName || user.firstName,
+      lastName: args.lastName || user.lastName,
+      email: args.email || user.email,
+      profile: args.profile || user.profile,
+      phone: args.phone || user.phone,
+      bio: args.bio || user.bio,
+      country: args.country || user.country,
+      city: args.city || user.city,
+      street: args.city || user.street
+    });
 
-    if (newUserInfo[0] !== 1) {
-      throw new GraphQLError("unknown error, please try again");
+    if (!updatedUser) {
+      throw new GraphQLError("server error, please try again");
     }
-
-    return { message: "user updated successful" };
+    return updatedUser;
   }
 }
 

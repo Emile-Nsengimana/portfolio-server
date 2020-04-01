@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Tools', {
+    return queryInterface.createTable("Tools", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,16 +9,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       experience: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       category: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM,
+        values: ["language", "dev-tools"],
+        allowNull: false
       },
       logo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Tools');
+    return queryInterface.dropTable("Tools");
   }
 };

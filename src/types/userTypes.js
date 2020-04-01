@@ -14,10 +14,3 @@ export const USER = new GraphQLObjectType({
     street: { type: GraphQLString }
   })
 });
-
-export const USERUPDATED = new GraphQLObjectType({
-  name: "USERINFO",
-  fields: () => ({
-    message: { type: GraphQLString }
-  })
-});
