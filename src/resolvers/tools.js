@@ -1,15 +1,12 @@
 import { GraphQLError } from "graphql";
-import { Tools as toolsModal } from "../db/models/index";
-import SequelizeDatabaseError from "sequelize";
+import Modal from "../db/models/index";
+
+const { Tools: toolsModal } = Modal;
 
 class ToolsResolver {
   static async registerTool(args) {
-    // try {
-      const tool = await toolsModal.create(args);
-      return tool;
-    // } catch (SequelizeDatabaseError) {
-    //   throw new GraphQLError("server error");
-    // }
+    const tool = await toolsModal.create(args);
+    return tool;
   }
 
   static async getTools(args) {
@@ -35,7 +32,7 @@ class ToolsResolver {
     if (!tool) {
       throw new GraphQLError("tool not found");
     }
-    
+
     const updatedTool = await tool.update({
       title: args.title || tool.title,
       experience: args.experience || tool.experience,

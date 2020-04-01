@@ -2,11 +2,11 @@ import { GraphQLError } from "graphql";
 import Modal from "../db/models/index";
 import bcrypt from "bcrypt";
 
-const { User: UserModal } = Modal;
+const { User: userModal } = Modal;
 
 class UserResolver {
   static async login(args) {
-    const userInfo = await UserModal.findOne({
+    const userInfo = await userModal.findOne({
       where: { email: args.email }
     });
 
@@ -25,7 +25,7 @@ class UserResolver {
   }
 
   static async getUserInfo(args) {
-    const userInfo = await UserModal.findOne({
+    const userInfo = await userModal.findOne({
       where: { id: args.id }
     });
 
@@ -37,7 +37,7 @@ class UserResolver {
   }
 
   static async editUserInfo(args) {
-    const user = await UserModal.findOne({
+    const user = await userModal.findOne({
       where: { id: args.userId }
     });
 
